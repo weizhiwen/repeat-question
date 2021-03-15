@@ -15,7 +15,7 @@ import java.util.Random;
 @Rollback(false)
 class DemoApplicationTests {
     @Autowired
-    User1Service user1Service;
+    UserService userService;
 
     @Test
     void testWay1() throws Throwable {
@@ -27,7 +27,7 @@ class DemoApplicationTests {
                     User1 user = new User1();
                     user.setTel("17639600474");
                     user.setPassword("123456");
-                    user1Service.way1(user);
+                    userService.way1(user);
                 }
             };
         }
@@ -45,7 +45,7 @@ class DemoApplicationTests {
                     User1 user = new User1();
                     user.setTel("17621027129");
                     user.setPassword("123456");
-                    user1Service.way2(user);
+                    userService.way2(user);
                 }
             };
         }
@@ -65,7 +65,7 @@ class DemoApplicationTests {
                     param.setTel(random);
                     param.setPassword("123456");
                     param.setMarkId(random);
-                    user1Service.way3(param);
+                    userService.way3(param);
                 }
             };
         }
@@ -83,7 +83,7 @@ class DemoApplicationTests {
                     User1 user = new User1();
                     user.setTel("17521027129");
                     user.setPassword("123456");
-                    user1Service.way4(user, ("127.0.0.1/way4"));
+                    userService.way4(user, ("127.0.0.1/way4"));
                 }
             };
         }
@@ -103,7 +103,7 @@ class DemoApplicationTests {
                     param.setTel(random);
                     param.setPassword("123456");
                     param.setMarkId(random);
-                    user1Service.way5(param);
+                    userService.way5(param);
                 }
             };
         }
@@ -111,4 +111,21 @@ class DemoApplicationTests {
         multiThreadedTestRunner.runTestRunnables();
     }
 
+    @Test
+    void testWay6() throws Throwable {
+        TestRunnable[] testRunnables = new TestRunnable[10];
+        for (int i = 0; i < 10; i++) {
+            testRunnables[i] = new TestRunnable() {
+                @Override
+                public void runTest() throws Throwable {
+                    User2 user = new User2();
+                    user.setTel("1231231");
+                    user.setPassword("123456");
+                    userService.way6(user);
+                }
+            };
+        }
+        MultiThreadedTestRunner multiThreadedTestRunner = new MultiThreadedTestRunner(testRunnables);
+        multiThreadedTestRunner.runTestRunnables();
+    }
 }

@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import org.springframework.data.domain.Example;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class User1Service {
+public class UserService {
     final User1Repository user1Repository;
+    final User2Repository user2Repository;
     final StringRedisTemplate redisTemplate;
 
     static final CopyOnWriteArraySet<String> MARK_SET = new CopyOnWriteArraySet<>();
@@ -103,7 +103,7 @@ public class User1Service {
 
         log.info("线程: {} 执行", Thread.currentThread().getName());
         if (LOCK_MAP.containsKey(key)) {
-            log.info("线程: {} 请勿重复注册！", Thread.currentThread().getName());
+            log.info("线程: {} 对象锁判断请勿重复注册！", Thread.currentThread().getName());
             throw new RepeatException("请勿重复注册！");
         }
 
@@ -149,6 +149,18 @@ public class User1Service {
 
         // 注册成功后删除该markId
         redisTemplate.delete(param.getMarkId());
+
+        commonEnd();
+    }
+
+    public void way6(User2 user) throws InterruptedException {
+        commonStart();
+
+        // 模拟耗时业务处理过程
+        Thread.sleep(2000);
+
+        // user tel字段唯一约束
+        user2Repository.save(user);
 
         commonEnd();
     }

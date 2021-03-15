@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("user")
 @RequiredArgsConstructor
 public class User1Controller {
-    final User1Service user1Service;
+    final UserService userService;
 
     /**
      * 方式1：会有重复提交问题
@@ -30,7 +30,7 @@ public class User1Controller {
      */
     @PostMapping("/way1")
     public String way1(@RequestBody User1 user) throws InterruptedException {
-        user1Service.way1(user);
+        userService.way1(user);
         return "注册成功";
     }
 
@@ -43,7 +43,7 @@ public class User1Controller {
      */
     @PostMapping("/way2")
     public String way2(@RequestBody User1 user) throws InterruptedException {
-        user1Service.way2(user);
+        userService.way2(user);
         return "注册成功";
     }
 
@@ -56,7 +56,7 @@ public class User1Controller {
      */
     @PostMapping("/way3")
     public String way3(@RequestBody UserParam param) throws InterruptedException {
-        user1Service.way3(param);
+        userService.way3(param);
         return "注册成功";
     }
 
@@ -72,7 +72,7 @@ public class User1Controller {
                        HttpServletRequest request) throws InterruptedException {
         String remoteAddr = request.getRemoteAddr();
         log.info("用户地址：{}", remoteAddr);
-        user1Service.way4(user, remoteAddr+"/user/way4");
+        userService.way4(user, remoteAddr+"/user/way4");
         return "注册成功";
     }
 
@@ -85,7 +85,20 @@ public class User1Controller {
      */
     @PostMapping("/way5")
     public String way5(@RequestBody UserParam param) throws InterruptedException {
-        user1Service.way5(param);
+        userService.way5(param);
+        return "注册成功";
+    }
+
+    /**
+     * 方式6：使用数据库唯一约束，
+     *
+     * @param user
+     * @return
+     * @throws InterruptedException
+     */
+    @PostMapping("/way6")
+    public String way6(@RequestBody User2 user) throws InterruptedException {
+        userService.way6(user);
         return "注册成功";
     }
 }
