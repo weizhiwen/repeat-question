@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/repeat-question
+    username: root
+    password: 123456
+  jpa:
+    open-in-view: true
+  devtools:
+    restart:
+      additional-paths: resources/static/**
+  resources:
+    cache:
+      cachecontrol:
+        max-age: 0
+      period: 0
+    chain:
+      cache: false
+  thymeleaf:
+    cache: false
