@@ -27,7 +27,7 @@ class DemoApplicationTests {
                     User1 user = new User1();
                     user.setTel("17639600474");
                     user.setPassword("123456");
-                    userService.way1(user);
+                    userService.register1(user);
                 }
             };
         }
@@ -45,7 +45,7 @@ class DemoApplicationTests {
                     User1 user = new User1();
                     user.setTel("17621027129");
                     user.setPassword("123456");
-                    userService.way2(user);
+                    userService.register2(user);
                 }
             };
         }
@@ -65,7 +65,7 @@ class DemoApplicationTests {
                     param.setTel(random);
                     param.setPassword("123456");
                     param.setMarkId(random);
-                    userService.way3(param);
+                    userService.register3(param);
                 }
             };
         }
@@ -83,7 +83,7 @@ class DemoApplicationTests {
                     User1 user = new User1();
                     user.setTel("17521027129");
                     user.setPassword("123456");
-                    userService.way4(user, ("127.0.0.1/way4"));
+                    userService.register4(user, ("127.0.0.1/way4"));
                 }
             };
         }
@@ -103,7 +103,7 @@ class DemoApplicationTests {
                     param.setTel(random);
                     param.setPassword("123456");
                     param.setMarkId(random);
-                    userService.way5(param);
+                    userService.register5(param);
                 }
             };
         }
@@ -121,7 +121,7 @@ class DemoApplicationTests {
                     User2 user = new User2();
                     user.setTel("1231231");
                     user.setPassword("123456");
-                    userService.way6(user);
+                    userService.register6(user);
                 }
             };
         }

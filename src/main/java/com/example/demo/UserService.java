@@ -49,7 +49,7 @@ public class UserService {
     }
 
 
-    public void way1(User1 user) throws InterruptedException {
+    public void register1(User1 user) throws InterruptedException {
         commonStart();
 
         // 模拟耗时业务处理过程
@@ -60,7 +60,7 @@ public class UserService {
         commonEnd();
     }
 
-    public void way2(User1 user) throws InterruptedException {
+    public void register2(User1 user) throws InterruptedException {
         commonStart();
 
         businessJudge(user.getTel());
@@ -73,7 +73,7 @@ public class UserService {
         commonEnd();
     }
 
-    public void way3(UserParam param) throws InterruptedException {
+    public void register3(UserParam param) throws InterruptedException {
         commonStart();
 
         // 在MARK_SET判断是否有该标识
@@ -98,7 +98,7 @@ public class UserService {
         commonEnd();
     }
 
-    public void way4(User1 user, String key) throws InterruptedException {
+    public void register4(User1 user, String key) throws InterruptedException {
         commonStart();
 
         log.info("线程: {} 执行", Thread.currentThread().getName());
@@ -125,7 +125,7 @@ public class UserService {
         }
     }
 
-    public void way5(UserParam param) throws InterruptedException {
+    public void register5(UserParam param) throws InterruptedException {
         commonStart();
 
         Boolean success = redisTemplate.opsForValue()
@@ -153,7 +153,7 @@ public class UserService {
         commonEnd();
     }
 
-    public void way6(User2 user) throws InterruptedException {
+    public void register6(User2 user) throws InterruptedException {
         commonStart();
 
         // 模拟耗时业务处理过程
@@ -161,6 +161,19 @@ public class UserService {
 
         // user tel字段唯一约束
         user2Repository.save(user);
+
+        commonEnd();
+    }
+
+    public void register7(User1 user) throws InterruptedException {
+        commonStart();
+
+        businessJudge(user.getTel());
+
+        // 模拟耗时业务处理过程
+        Thread.sleep(10000);
+
+        user1Repository.save(user);
 
         commonEnd();
     }

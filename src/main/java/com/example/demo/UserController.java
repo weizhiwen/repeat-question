@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("user")
 @RequiredArgsConstructor
-public class User1Controller {
+public class UserController {
     final UserService userService;
 
     /**
@@ -28,9 +28,9 @@ public class User1Controller {
      * @return
      * @throws InterruptedException
      */
-    @PostMapping("/way1")
-    public String way1(@RequestBody User1 user) throws InterruptedException {
-        userService.way1(user);
+    @PostMapping("/register1")
+    public String register1(@RequestBody User1 user) throws InterruptedException {
+        userService.register1(user);
         return "注册成功";
     }
 
@@ -41,9 +41,9 @@ public class User1Controller {
      * @return
      * @throws InterruptedException
      */
-    @PostMapping("/way2")
-    public String way2(@RequestBody User1 user) throws InterruptedException {
-        userService.way2(user);
+    @PostMapping("/register2")
+    public String register2(@RequestBody User1 user) throws InterruptedException {
+        userService.register2(user);
         return "注册成功";
     }
 
@@ -54,9 +54,9 @@ public class User1Controller {
      * @return
      * @throws InterruptedException
      */
-    @PostMapping("/way3")
-    public String way3(@RequestBody UserParam param) throws InterruptedException {
-        userService.way3(param);
+    @PostMapping("/register3")
+    public String register3(@RequestBody UserParam param) throws InterruptedException {
+        userService.register3(param);
         return "注册成功";
     }
 
@@ -67,12 +67,12 @@ public class User1Controller {
      * @return
      * @throws InterruptedException
      */
-    @PostMapping("/way4")
-    public String way4(@RequestBody User1 user,
+    @PostMapping("/register4")
+    public String register4(@RequestBody User1 user,
                        HttpServletRequest request) throws InterruptedException {
         String remoteAddr = request.getRemoteAddr();
         log.info("用户地址：{}", remoteAddr);
-        userService.way4(user, remoteAddr+"/user/way4");
+        userService.register4(user, remoteAddr+"/user/way4");
         return "注册成功";
     }
 
@@ -83,9 +83,9 @@ public class User1Controller {
      * @return
      * @throws InterruptedException
      */
-    @PostMapping("/way5")
-    public String way5(@RequestBody UserParam param) throws InterruptedException {
-        userService.way5(param);
+    @PostMapping("/register5")
+    public String register5(@RequestBody UserParam param) throws InterruptedException {
+        userService.register5(param);
         return "注册成功";
     }
 
@@ -96,9 +96,19 @@ public class User1Controller {
      * @return
      * @throws InterruptedException
      */
-    @PostMapping("/way6")
-    public String way6(@RequestBody User2 user) throws InterruptedException {
-        userService.way6(user);
+    @PostMapping("/register6")
+    public String register6(@RequestBody User2 user) throws InterruptedException {
+        userService.register6(user);
+        return "注册成功";
+    }
+
+    /**
+     * 使用注解
+     */
+    @PostMapping("/register7")
+    @RepeatLimit(key = "#user.tel")
+    public String register7(@RequestBody User1 user) throws InterruptedException {
+        userService.register7(user);
         return "注册成功";
     }
 }
