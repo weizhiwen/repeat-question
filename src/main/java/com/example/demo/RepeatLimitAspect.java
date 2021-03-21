@@ -40,6 +40,8 @@ public class RepeatLimitAspect {
         RepeatLimit repeatLimit = signature.getMethod().getAnnotation(RepeatLimit.class);
         String[] parameterNames = signature.getParameterNames();
         Object[] args = proceedingJoinPoint.getArgs();
+        // TODO: 如果key为空，使用args构建key
+        // 解析key中的spel表达式动态获取实际值
         SpelExpressionParser spelExpressionParser = new SpelExpressionParser();
         for (int i = 0; i < parameterNames.length; i++) {
             EVALUATION_CONTEXT.setVariable(parameterNames[i], args[i]);
